@@ -5,4 +5,6 @@
 
 > Install ansible on control
 
+> configure ansible vault
+
 > execute : ansible-playbook site.yml
