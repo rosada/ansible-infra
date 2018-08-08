@@ -35,17 +35,17 @@ EOF
 
   config.vm.define "lb01" do |h|
     h.vm.network "private_network", ip: "192.168.135.110"
-    h.vm.provision :shell, inline: 'cat /vagrant/control.pub >> /root/.ssh/authorized_keys'
+    h.vm.provision :shell, inline: 'cat /vagrant/control.pub >> /home/vagrant/.ssh/authorized_keys'
   end
 
   config.vm.define "app01" do |h|
     h.vm.network "private_network", ip: "192.168.135.111"
-    h.vm.provision :shell, inline: 'cat /vagrant/control.pub >> /root/.ssh/authorized_keys'
+    h.vm.provision :shell, inline: 'cat /vagrant/control.pub >> /home/vagrant/.ssh/authorized_keys'
   end
 
   config.vm.define "app02" do |h|
     h.vm.network "private_network", ip: "192.168.135.112"
-    h.vm.provision :shell, inline: 'cat /vagrant/control.pub >> /root/.ssh/authorized_keys'
+    h.vm.provision :shell, inline: 'cat /vagrant/control.pub >> /home/vagrant/.ssh/authorized_keys'
   end
 
   config.vm.define "db01" do |h|
