@@ -11,7 +11,7 @@
 # This should put you at the control host
 #  with access, by name, to other vms
 $script = <<SCRIPT
-apt-get update && apt-get install git -y && apt-add-repository ppa:ansible/ansible -y && apt-get update && apt-get install ansible -y 
+apt-get update -y && apt-get install git -y && apt-add-repository ppa:ansible/ansible -y && apt-get update -y && apt-get install ansible -y 
 SCRIPT
 
 Vagrant.configure(2) do |config|
