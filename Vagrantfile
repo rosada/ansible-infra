@@ -10,6 +10,10 @@
 #
 # This should put you at the control host
 #  with access, by name, to other vms
+$script = <<SCRIPT
+apt-get update && apt-get install git -y && apt-add-repository ppa:ansible/ansible -y && apt-get update && apt-get install ansible -y 
+SCRIPT
+
 Vagrant.configure(2) do |config|
   config.hostmanager.enabled = true
 
@@ -17,6 +21,7 @@ Vagrant.configure(2) do |config|
 
   config.vm.define "control", primary: true do |h|
     h.vm.network "private_network", ip: "192.168.135.10"
+    h.vm.provision :shell, inline: $script
     h.vm.provision :shell, :inline => <<'EOF'
 if [ ! -f "/home/vagrant/.ssh/id_rsa" ]; then
   ssh-keygen -t rsa -N "" -f /home/vagrant/.ssh/id_rsa
@@ -30,7 +35,6 @@ Host *
 SSHEOF
 
 chown -R vagrant:vagrant /home/vagrant/.ssh/
-apt update && apt install git && apt-add-repository ppa:ansible/ansible -y && apt update && apt install ansible -y
 EOF
   end
 
